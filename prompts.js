@@ -17,10 +17,8 @@ const pokemonName = async () => {
 
 // checkbox
 
-function promptForDownload =async ()=>{
-return await 
-inquirer
-  .prompt({
+const promptForDownload = async () => {
+  return await inquirer.prompt({
     type: "checkbox",
     message: "Pokemon info to download",
     name: "INFO ABOUT---",
@@ -35,6 +33,15 @@ inquirer
         name: "Artwork",
       },
     ],
-  })
-  
-}
+  });
+};
+
+// continue
+const promptToContinue = async () => {
+  return await inquirer.prompt({
+    type: "list",
+    name: "CHOICES",
+    message: "Would you like to search for another Pokemon",
+    choices: ["Yes", "No"],
+  });
+};
