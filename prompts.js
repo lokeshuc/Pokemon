@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import inquirer from "inquirer";
 
+// Prompt for pokemon
 const Pokemon = () => {
   return inquirer.prompt({
     type: "input",
@@ -14,9 +15,26 @@ const pokemonName = async () => {
   console.log(`Your pokemon name is: ${questions.Pokemon_name}`);
 };
 
-pokemonName();
+// checkbox
 
-/* inquirer.prompt(questions).then((answers) => {
-  console.log(pokemonanswers);
-});
- */
+function promptForDownload =async ()=>{
+return await 
+inquirer
+  .prompt({
+    type: "checkbox",
+    message: "Pokemon info to download",
+    name: "INFO ABOUT---",
+    choices: [
+      {
+        name: "Stats",
+      },
+      {
+        name: "Sprites",
+      },
+      {
+        name: "Artwork",
+      },
+    ],
+  })
+  
+}
