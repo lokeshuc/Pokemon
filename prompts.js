@@ -51,10 +51,14 @@ const promptToContinue = async () => {
 // for fetching pokemon information
 
 const fetchPokemon = async (pokemon_name) => {
-  const url = `https://pokeapi.co/api/v2/pokemon/${pokemon_name}`;
-  const response = await fetch(url);
-  const json = await response.json();
-  return json;
+  try {
+    const url = `https://pokeapi.co/api/v2/pokemon/${pokemon_name}`;
+    const response = await fetch(url);
+    const json = await response.json();
+    return json;
+  } catch {
+    console.log("Network Error!!");
+  }
 };
 
 // Loop until the user gives 'no' as ans in to search for another pokemon
