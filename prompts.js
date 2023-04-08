@@ -71,11 +71,14 @@ const promptUser = async () => {
 
     // fetch pokemon info
     try {
-      const pokemonInfo = await fetchPokemon();
-      console.log(pokemonInfo);
+      const pokemonInfo = await fetchPokemon(pokemonName.Pokemon_name);
+      console.log(pokemonInfo.name);
     } catch (err) {
       console.log(err);
     }
+    // use what is in these options to fetch the info
+
+    // save them in the local disc
 
     // ask if they want to continue or not
     const loop = await promptToContinue();
