@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { fetchPokemon } from "./prompts.js";
 
 const createFolder = async (folderName) => {
   const currentPath = process.cwd();
@@ -11,5 +12,14 @@ const createFolder = async (folderName) => {
   }
 };
 
-console.log(process.cwd());
-createFolder("monu");
+const savePokemonStats = async (PokemonStatsObject) => {
+  let statsString = "";
+  for (const stat of PokemonStatsObject) {
+    // console.log(stat);
+    statsString += `${stat.stat.name} : ${stat.base_stat} \n`;
+  }
+  console.log(statsString);
+};
+
+const pokemon = await fetchPokemon("pikachu");
+savePokemonStats(pokemon.stats);

@@ -88,4 +88,6 @@ const promptUser = async () => {
   }
 };
 
-promptUser();
+// promptUser();
+
+export { fetchPokemon };
