@@ -1,0 +1,25 @@
+{
+  "name": "pokemon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "prompts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lokeshuc/Pokemon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lokeshuc/Pokemon/issues"
+  },
+  "homepage": "https://github.com/lokeshuc/Pokemon#readme",
+  "type": "module",
+  "dependencies": {
+    "inquirer": "^9.1.5",
+    "node-fetch": "^3.3.1"
+  }
+}
