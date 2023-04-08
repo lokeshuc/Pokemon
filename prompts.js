@@ -1,9 +1,11 @@
-import fetch from "node-fetch";
+// this is to fetch things from server
+// import fetch from "node-fetch";
+// // this is to create prompt/checkbox/list
 import inquirer from "inquirer";
 
 // Prompt for pokemon
-const Pokemon = () => {
-  return inquirer.prompt({
+const Pokemon = async () => {
+  return await inquirer.prompt({
     type: "input",
     name: "Pokemon_name",
     message: "What's your Pokemon name: ",
@@ -21,7 +23,7 @@ const promptForDownload = async () => {
   return await inquirer.prompt({
     type: "checkbox",
     message: "Pokemon info to download",
-    name: "INFO ABOUT---",
+    name: "INFO",
     choices: [
       {
         name: "Stats",
@@ -45,3 +47,42 @@ const promptToContinue = async () => {
     choices: ["Yes", "No"],
   });
 };
+
+// for fetching pokemon information
+
+const fetchPokemon = async (pokemon_name) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${pokemon_name}`;
+  const response = await fetch(url);
+  const json = await response.json();
+  return json;
+};
+
+// Loop until the user gives 'no' as ans in to search for another pokemon
+
+const promptUser = async () => {
+  while (1) {
+    // ask for pokemon name and log it
+    const pokemonName = await Pokemon();
+    console.log(`your selected pokemon is ${pokemonName.Pokemon_name}`);
+
+    // show checkbox
+    const checkbox = await promptForDownload();
+    console.log(checkbox.INFO);
+
+    // fetch pokemon info
+    try {
+      const pokemonInfo = await fetchPokemon();
+      console.log(pokemonInfo);
+    } catch (err) {
+      console.log(err);
+    }
+
+    // ask if they want to continue or not
+    const loop = await promptToContinue();
+    if (loop.CHOICES === "No") {
+      break;
+    }
+  }
+};
+
+promptUser();
