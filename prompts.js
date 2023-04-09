@@ -66,16 +66,13 @@ const promptUser = async () => {
   while (1) {
     // ask for pokemon name and log it
     const pokemonName = await Pokemon();
-    console.log(`your selected pokemon is ${pokemonName.Pokemon_name}`);
 
     // show checkbox
     const checkbox = await promptForDownload();
-    // console.log(checkbox.INFO);
 
     // fetch pokemon info
 
     const pokemonInfo = await fetchPokemon(pokemonName.Pokemon_name);
-    console.log(pokemonInfo.name);
 
     // use what is in these options to fetch the info
 
