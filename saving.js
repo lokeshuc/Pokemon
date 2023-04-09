@@ -91,15 +91,15 @@ const parseOptions = async (pokemonObject, optionsObject) => {
   // grab pokemon name
   const pokemonName = pokemonObject.name;
 
-  if (options.include("Stats")) {
+  if (options.includes("Stats")) {
     await savePokemonStats(pokemonName, pokemonObject.stats);
   }
 
-  if (options.include("Sprites")) {
+  if (options.includes("Sprites")) {
     await savePokemonSprites(pokemonName, pokemonObject);
   }
 
-  if (options.include("Artwork")) {
+  if (options.includes("Artwork")) {
     await savePokemonArtwork(pokemonName, pokemonObject);
   }
 };

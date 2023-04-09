@@ -1,7 +1,6 @@
-// this is to fetch things from server
-// import fetch from "node-fetch";
-// // this is to create prompt/checkbox/list
+// this is to create prompt/checkbox/list
 import inquirer from "inquirer";
+import { parseOptions } from "./saving.js";
 
 // 1. Prompt for pokemon
 const Pokemon = async () => {
@@ -71,16 +70,16 @@ const promptUser = async () => {
 
     // show checkbox
     const checkbox = await promptForDownload();
-    console.log(checkbox.INFO);
+    // console.log(checkbox.INFO);
 
     // fetch pokemon info
-    try {
-      const pokemonInfo = await fetchPokemon(pokemonName.Pokemon_name);
-      console.log(pokemonInfo.name);
-    } catch (err) {
-      console.log(err);
-    }
+
+    const pokemonInfo = await fetchPokemon(pokemonName.Pokemon_name);
+    console.log(pokemonInfo.name);
+
     // use what is in these options to fetch the info
+
+    await parseOptions(pokemonInfo, checkbox);
 
     // save them in the local disc
 
@@ -92,6 +91,4 @@ const promptUser = async () => {
   }
 };
 
-promptUser();
-
-export { fetchPokemon };
+export { promptUser };
