@@ -2,6 +2,8 @@ import fs from "fs/promises";
 import path from "path";
 import { fetchPokemon } from "./prompts.js";
 
+//function to create folder in current working directory
+
 const createFolder = async (folderName) => {
   const currentPath = process.cwd();
   const folderpath = path.join(currentPath, folderName);
@@ -12,6 +14,8 @@ const createFolder = async (folderName) => {
   }
 };
 
+// function to create pokemon stats and save it into folder
+
 const savePokemonStats = async (folderName, PokemonStatsObject) => {
   let statsString = "";
   for (const stat of PokemonStatsObject) {
@@ -20,9 +24,11 @@ const savePokemonStats = async (folderName, PokemonStatsObject) => {
   }
   console.log(statsString);
 
-  //   creating a folder and storing the stats in it
+  //   creating a folder
 
   await createFolder(folderName);
+
+  //   creating a file in the folder and writing info in it
 
   const currentpath = process.cwd();
   const filePath = path.join(currentpath, folderName, "stats.txt");
@@ -30,6 +36,6 @@ const savePokemonStats = async (folderName, PokemonStatsObject) => {
   await fs.writeFile(filePath, statsString);
 };
 
-const pokemon = await fetchPokemon("pikachu");
-savePokemonStats("pikachu", pokemon.stats);
-console.log("file can't be created");
+// const pokemon = await fetchPokemon("mew");
+// savePokemonStats("mew", pokemon.stats);
+// // console.log("file can't be created");
