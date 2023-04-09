@@ -1,8 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
-import { fetchPokemon } from "./prompts.js";
+import fetch from "node-fetch";
 
-//function to create folder in current working directory
+// 1. function to create folder in current working directory
 
 const createFolder = async (folderName) => {
   const currentPath = process.cwd();
@@ -14,7 +14,7 @@ const createFolder = async (folderName) => {
   }
 };
 
-// function to grab pokemon stats from the object created by 'fetchPokemon' and save it into folder
+// 2. function to grab pokemon stats from the object created by 'fetchPokemon' and save it into folder
 
 const savePokemonStats = async (folderName, PokemonStatsObject) => {
   let statsString = "";
@@ -36,15 +36,7 @@ const savePokemonStats = async (folderName, PokemonStatsObject) => {
   await fs.writeFile(filePath, statsString);
 };
 
-/* 
-This fetches the all the info about the pokemon
-
-savePokemonStats("mew", pokemon.stats); 
-*/
-
-// // console.log("file can't be created");
-
-/* ~~Function to save pokemon artwork into folder ~~*/
+/* ~~3. Function to save pokemon artwork into folder ~~*/
 
 const savePokemonArtwork = async (foldername, pokemonSpritesObject) => {
   const url =
@@ -61,7 +53,7 @@ const savePokemonArtwork = async (foldername, pokemonSpritesObject) => {
   await fs.writeFile(filepath, Buffer.from(arrayBuffer));
 };
 
-/* **Function to save pokemon sprites */
+/* ** 4. Function to save pokemon sprites */
 
 const savePokemonSprites = async (foldername, pokemonSpritesObject) => {
   let spritePromise = [];
@@ -90,6 +82,26 @@ const savePokemonSprites = async (foldername, pokemonSpritesObject) => {
   }
 };
 
-const pokemon = await fetchPokemon("mew");
+/* ---combining checkbox with their options---- */
 
-savePokemonSprites("mew", pokemon);
+const parseOptions = async (pokemonObject, optionsObject) => {
+  // grab options
+  const options = optionsObject.INFO;
+
+  // grab pokemon name
+  const pokemonName = pokemonObject.name;
+
+  if (options.include("Stats")) {
+    await savePokemonStats(pokemonName, pokemonObject.stats);
+  }
+
+  if (options.include("Sprites")) {
+    await savePokemonSprites(pokemonName, pokemonObject);
+  }
+
+  if (options.include("Artwork")) {
+    await savePokemonArtwork(pokemonName, pokemonObject);
+  }
+};
+
+export { parseOptions };

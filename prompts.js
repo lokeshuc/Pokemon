@@ -3,7 +3,7 @@
 // // this is to create prompt/checkbox/list
 import inquirer from "inquirer";
 
-// Prompt for pokemon
+// 1. Prompt for pokemon
 const Pokemon = async () => {
   return await inquirer.prompt({
     type: "input",
@@ -17,7 +17,7 @@ const pokemonName = async () => {
   console.log(`Your pokemon name is: ${questions.Pokemon_name}`);
 };
 
-// checkbox
+// 2. checkbox
 
 const promptForDownload = async () => {
   return await inquirer.prompt({
@@ -38,7 +38,7 @@ const promptForDownload = async () => {
   });
 };
 
-// continue
+// 3. continue
 const promptToContinue = async () => {
   return await inquirer.prompt({
     type: "list",
@@ -48,7 +48,7 @@ const promptToContinue = async () => {
   });
 };
 
-// for fetching pokemon information
+// 4. for fetching pokemon information
 
 const fetchPokemon = async (pokemon_name) => {
   try {
@@ -61,7 +61,7 @@ const fetchPokemon = async (pokemon_name) => {
   }
 };
 
-// Loop until the user gives 'no' as ans in to search for another pokemon
+// 5. Loop until the user gives 'no' as ans in to search for another pokemon
 
 const promptUser = async () => {
   while (1) {
@@ -92,6 +92,6 @@ const promptUser = async () => {
   }
 };
 
-// promptUser();
+promptUser();
 
 export { fetchPokemon };
